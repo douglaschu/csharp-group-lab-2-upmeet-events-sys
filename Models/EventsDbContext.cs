@@ -17,21 +17,22 @@ public partial class EventsDbContext : DbContext
 
     public virtual DbSet<Event> Events { get; set; }
 
-    public virtual DbSet<Favorite> Favorites { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=localhost,1433; Initial Catalog=EventsDB; User ID=SA; Password=someThingComplicated1234; TrustServerCertificate=true;");
+        => optionsBuilder.UseSqlServer("Data Source=.\\sqlexpress;Initial Catalog=EventsDB;Integrated Security=SSPI;Encrypt=false;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Event>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Event__3213E83F7053D745");
+            entity.HasKey(e => e.Id).HasName("PK__Event__3213E83F997F724D");
 
             entity.ToTable("Event");
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.EventCategory)
+                .HasMaxLength(255)
+                .HasColumnName("eventCategory");
             entity.Property(e => e.EventDate)
                 .HasColumnType("date")
                 .HasColumnName("eventDate");
@@ -48,23 +49,10 @@ public partial class EventsDbContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("eventName");
             entity.Property(e => e.EventTime).HasColumnName("eventTime");
-            entity.Property(e => e.Price).HasColumnName("price");
-        });
-
-        modelBuilder.Entity<Favorite>(entity =>
-        {
-            entity.HasKey(e => e.FavoriteId).HasName("PK__Favorite__CE74FAD50FB949BB");
-
-            entity.ToTable("Favorite");
-
-            entity.Property(e => e.EventId).HasColumnName("eventId");
-            entity.Property(e => e.UserName)
+            entity.Property(e => e.EventVenue)
                 .HasMaxLength(255)
-                .HasColumnName("userName");
-
-            entity.HasOne(d => d.Event).WithMany(p => p.Favorites)
-                .HasForeignKey(d => d.EventId)
-                .HasConstraintName("FK__Favorite__eventI__2D27B809");
+                .HasColumnName("eventVenue");
+            entity.Property(e => e.Price).HasColumnName("price");
         });
 
         OnModelCreatingPartial(modelBuilder);
