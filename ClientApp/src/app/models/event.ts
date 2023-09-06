@@ -13,5 +13,5 @@ export interface Event {
   eventVenue: string;
 
   //favorites: number; //change to account for table join?
-  //Can be handled with 
+  //Can be handled with
 }

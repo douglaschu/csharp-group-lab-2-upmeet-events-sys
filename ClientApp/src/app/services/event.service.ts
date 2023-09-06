@@ -10,7 +10,7 @@ import { Event } from '../models/event';
 })
 export class EventService {
 
-  public allEventList: EventService[] = [];
+  
 
   constructor(private http:HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
