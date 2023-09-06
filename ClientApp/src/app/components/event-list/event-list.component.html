@@ -1,7 +1,11 @@
 <h1>All Events</h1>
 
-<div *ngFor="let e of allEventList">
-<p> {{e.eventName}}</p>
-<p> {{e.eventDate}}</p>
+<div routerLink="/Events/{{e.id}}" id="container" *ngFor="let e of allEventList">
+    <!-- <li *ngFor="let p of allPeople; index as i" routerLink="/people/{{i}}">{{p.name}}</li> -->
 
+
+    <!-- <app-event-detail *ngFor="let e of getEventsByNewest()" [individualEvent]="e"></app-event-detail> -->
+    <p> {{e.eventName}}</p>
+    <p> {{e.eventDate}}</p>
 </div>
+

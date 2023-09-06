@@ -36,6 +36,7 @@ import { UserFormComponent } from './components/user-form/user-form.component';
       { path: 'event-list', component: EventListComponent, pathMatch: 'full' },
       { path: 'add-event-form', component: AddEventFormComponent },
       { path: 'favorite-list', component: FavoriteListComponent },
+      {path:"Events/:id", component:EventDetailComponent},
     ])
   ],
   providers: [],

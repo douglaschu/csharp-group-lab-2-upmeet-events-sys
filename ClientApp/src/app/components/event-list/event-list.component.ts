@@ -20,8 +20,16 @@ export class EventListComponent {
       console.log(response);
       this.allEventList = response;
     });
-
-
+  }
+    callAddNewEvent(newEvent: Event) {
+      this._eventService.addNewEvent(newEvent).subscribe((response: Event) => {
+        console.log(response);
+        this.allEventList.push(response);
+      });
+    }
+    getEventsByNewest():Event[]{
+      return this.allEventList.reverse();
+    }
 
     
   }
@@ -34,4 +42,3 @@ export class EventListComponent {
   // deleteEvent(){
 
   // }
-}

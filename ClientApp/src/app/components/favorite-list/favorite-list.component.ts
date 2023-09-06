@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Favorite } from 'src/app/models/favorite';
+import { Component, OnInit } from '@angular/core';
+import { EventService } from 'src/app/services/event.service';
+
 
 @Component({
   selector: 'app-favorite-list',
@@ -6,15 +9,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./favorite-list.component.css']
 })
 export class FavoriteListComponent {
-
-
-
-    // callGetEventsByCategory(Category: Event):void{
-  //   this._eventService.getEventsByCategory(Category).subscribe((response: Event[]) => {
-  //     console.log(response);
-  //     this.allEventList = response;
-  //   });
-  // }
-
-
+    public allFavoritesList: Favorite[] = [];
+  
+    constructor(private _eventService: EventService) {}
+  
+    ngOnInit(): void {
+      this.callGetAllFavorites();
+    }
+    callGetAllFavorites() {
+      this._eventService.getAllFavorites().subscribe((response: Favorite[]) => {
+        console.log(response);
+        this.allFavoritesList = response;
+      });
+  }
 }
