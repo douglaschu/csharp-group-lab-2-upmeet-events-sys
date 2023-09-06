@@ -1,1 +1,25 @@
-<p>add-event-form works!</p>
+<body>
+    <button class="Create New Event" (click)="toggleDisplay()">New Event</button>
+    <form class='form'>
+        <div class="box">
+            <div class="fields">
+                <label for="eventName">Event Name</label>
+                <input type="text" id="eventName" name="Event Name" [(ngModel)]="newEvent.eventName"/>
+                <label for="eventDate">Date</label>
+                <input type="date" id="eventDate" name="Event Date" [(ngModel)]="newEvent.eventDate"/>
+                <label for="eventTime">Time</label>
+                <input type="time" id="eventTime" name="Event Time" [(ngModel)]="newEvent.eventTime"/>
+                <label for="eventLocation">Location</label>
+                <input type="text" id="eventLocation" name="Location" [(ngModel)]="newEvent.eventLocation"/>
+                <label for="eventVenue">Venue</label>
+                <input type="text" id="eventVenue" name="Venue" [(ngModel)]="newEvent.eventVenue"/>
+                <label for="eventDescription">Description</label>
+                <input type="text" id="eventDescription" name="Description" [(ngModel)]="newEvent.eventDescription">
+                <label for="price">Admission Price</label>
+                <input type="number" id="price" name="Price" [(ngModel)]="newEvent.price">
+                <label for="eventImage">Image Filepath</label>
+                <input type="text" id="eventImage" name="Image" [(ngModel)]="newEvent.eventImage">
+            </div>
+        </div>
+    </form>
+</body>>
