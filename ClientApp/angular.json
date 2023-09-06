@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "group_events_project"
+  "defaultProject": "group_events_project",
+  "cli": {
+    "analytics": false
+  }
 }

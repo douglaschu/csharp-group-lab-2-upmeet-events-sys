@@ -12,8 +12,6 @@ namespace group_events_project.Controllers
 
         EventsDbContext _dbContext = new EventsDbContext();
 
-
-
         //api/Events
         [HttpGet]
         public List<Event> getAll()
@@ -44,6 +42,15 @@ namespace group_events_project.Controllers
             return newEvent;
         }
 
+        //api/Events/Favorites
+        [HttpPost("Favorite")]
+        public Favorite addFavorite([FromBody] Favorite newFavorite)
+        {
+            _dbContext.Favorites.Add(newFavorite);
+            _dbContext.SaveChanges();
+            return newFavorite;
+        }
+
         //api/Events/3
         [HttpPut("{id}")]
         public Event updateEvent(int id, [FromBody] Event updatedEvent)
@@ -56,11 +63,21 @@ namespace group_events_project.Controllers
         }
     
         //api/Events/3
-    [HttpDelete("{id}")]
+        [HttpDelete("{id}")]
         public Event deleteEvent(int id)
         {
             Event deleted = _dbContext.Events.Find(id);
             _dbContext.Events.Remove(deleted);
+            _dbContext.SaveChanges();
+            return deleted;
+        }
+
+        //api/Events/Favorites/2
+        [HttpDelete("Favorite/{FavoriteId}")]
+        public Favorite deleteFavorite (int id)
+        {
+            Favorite deleted = _dbContext.Favorites.Find(id);
+            _dbContext.Favorites.Remove(deleted);
             _dbContext.SaveChanges();
             return deleted;
         }
