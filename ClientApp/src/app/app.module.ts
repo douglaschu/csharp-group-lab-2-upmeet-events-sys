@@ -11,6 +11,9 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { EventDetailComponent } from './components/event-detail/event-detail.component';
+import { AddEventFormComponent } from './components/add-event-form/add-event-form.component';
+import { FavoriteListComponent } from './components/favorite-list/favorite-list.component';
+import { UserFormComponent } from './components/user-form/user-form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { EventDetailComponent } from './components/event-detail/event-detail.com
     CounterComponent,
     FetchDataComponent,
     EventListComponent,
-    EventDetailComponent
+    EventDetailComponent,
+    AddEventFormComponent,
+    FavoriteListComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

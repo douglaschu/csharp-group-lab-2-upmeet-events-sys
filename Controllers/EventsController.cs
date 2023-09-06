@@ -26,6 +26,14 @@ namespace group_events_project.Controllers
             return _dbContext.Favorites.Where(u => u.UserName == userName).ToList();
         }
 
+        //api/Events/1
+        [HttpGet("{id}")]
+        public Event getById(int id)
+        {
+            return _dbContext.Events.Find(id);
+        }
+
+
         //api/Events/Category?category=
         [HttpGet("Category")]
         public List<Event> getByCategory(string category)
@@ -74,12 +82,12 @@ namespace group_events_project.Controllers
 
         //api/Events/Favorites/2
         [HttpDelete("Favorite/{FavoriteId}")]
-        public Favorite deleteFavorite (int id)
+        public Favorite removeFavorite (int id)
         {
-            Favorite deleted = _dbContext.Favorites.Find(id);
-            _dbContext.Favorites.Remove(deleted);
+            Favorite remove = _dbContext.Favorites.Find(id);
+            _dbContext.Favorites.Remove(remove);
             _dbContext.SaveChanges();
-            return deleted;
+            return remove;
         }
 
     }
