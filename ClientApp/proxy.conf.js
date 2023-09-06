@@ -7,6 +7,7 @@ const PROXY_CONFIG = [
   {
     context: [
       "/api/Events",
+      "/api/Favorites"
    ],
     proxyTimeout: 10000,
     target: target,

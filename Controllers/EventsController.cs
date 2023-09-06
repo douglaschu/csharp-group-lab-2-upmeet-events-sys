@@ -13,11 +13,19 @@ namespace group_events_project.Controllers
         EventsDbContext _dbContext = new EventsDbContext();
 
 
+
         //api/Events
         [HttpGet]
         public List<Event> getAll()
         {
             return _dbContext.Events.ToList();
+        }
+
+        //api/Events/Favorites
+        [HttpGet("Favorites")]
+        public List<Favorite> getFavorites(string userName)
+        {
+            return _dbContext.Favorites.Where(u => u.UserName == userName).ToList();
         }
 
         //api/Events/Category?category=

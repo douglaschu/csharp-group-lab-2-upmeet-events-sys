@@ -24,4 +24,6 @@ public partial class Event
     public string? EventCategory { get; set; }
 
     public string? EventVenue { get; set; }
+
+    public virtual ICollection<Favorite> Favorites { get; set; } = new List<Favorite>();
 }

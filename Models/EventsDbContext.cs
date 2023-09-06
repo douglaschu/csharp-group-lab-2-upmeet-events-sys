@@ -17,6 +17,8 @@ public partial class EventsDbContext : DbContext
 
     public virtual DbSet<Event> Events { get; set; }
 
+    public virtual DbSet<Favorite> Favorites { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=.\\sqlexpress;Initial Catalog=EventsDB;Integrated Security=SSPI;Encrypt=false;TrustServerCertificate=True;");
@@ -53,6 +55,22 @@ public partial class EventsDbContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("eventVenue");
             entity.Property(e => e.Price).HasColumnName("price");
+        });
+
+        modelBuilder.Entity<Favorite>(entity =>
+        {
+            entity.HasKey(e => e.FavoriteId).HasName("PK__Favorite__CE74FAD5C411B97F");
+
+            entity.ToTable("Favorite");
+
+            entity.Property(e => e.EventId).HasColumnName("eventId");
+            entity.Property(e => e.UserName)
+                .HasMaxLength(255)
+                .HasColumnName("userName");
+
+            entity.HasOne(d => d.Event).WithMany(p => p.Favorites)
+                .HasForeignKey(d => d.EventId)
+                .HasConstraintName("FK__Favorite__eventI__5CD6CB2B");
         });
 
         OnModelCreatingPartial(modelBuilder);
