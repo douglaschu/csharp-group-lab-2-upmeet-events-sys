@@ -26,8 +26,8 @@ export class EventService {
     return this.http.get<Event>(`${this.baseUrl}api/Events/${id}`);
   }
 
-  getEventsByCategory(): Observable<Event> {
-    return this.http.get<Event>(`${this.baseUrl}api/Events/Category`);
+  getEventsByCategory(Category:Event): Observable<Event> {
+    return this.http.get<Event>(`${this.baseUrl}api/Events/Category?=${Category}`);
   }
 
   addNewEvent(newEvent:Event): Observable<Event>{

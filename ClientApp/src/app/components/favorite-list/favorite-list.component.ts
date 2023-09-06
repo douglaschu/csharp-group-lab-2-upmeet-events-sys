@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class FavoriteListComponent {
 
+
+
+    // callGetEventsByCategory(Category: Event):void{
+  //   this._eventService.getEventsByCategory(Category).subscribe((response: Event[]) => {
+  //     console.log(response);
+  //     this.allEventList = response;
+  //   });
+  // }
+
+
 }

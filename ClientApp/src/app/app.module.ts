@@ -33,9 +33,9 @@ import { UserFormComponent } from './components/user-form/user-form.component';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'event-list', component: EventListComponent, pathMatch: 'full' },
+      { path: 'add-event-form', component: AddEventFormComponent },
+      { path: 'favorite-list', component: FavoriteListComponent },
     ])
   ],
   providers: [],
