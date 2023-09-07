@@ -3,7 +3,6 @@ import { Time } from '@angular/common';
 export interface Event {
   id: number;
   eventName: string;
-  eventDate: Date;
   eventTime: Date;
   eventLocation: string;
   price: number;

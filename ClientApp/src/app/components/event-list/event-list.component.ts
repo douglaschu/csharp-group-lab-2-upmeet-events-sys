@@ -29,6 +29,12 @@ export class EventListComponent {
       this.allEventList.push(response);
     });
   }
+  callAddUserToFave(addUser: Favorite){
+    this._eventService.addUserToFave(addUser).subscribe((response: Favorite) => {
+      console.log(response);
+      this.allFavoritesList.push(response)
+    })
+  }
   getEventsByNewest(): Event[] {
     return this.allEventList.reverse();
   }

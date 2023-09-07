@@ -8,9 +8,7 @@
 
 </head>
 <body>
-    
-
-
+    <app-add-event-form (eventCreated)="callAddNewEvent($event)"></app-add-event-form>
 
 <h1>All Events</h1>
 
@@ -31,8 +29,9 @@
     </div>
     <div class="card_details">
       <div class="name">{{ e.eventName }}</div>
-      <div>{{ e.eventDate | date }}</div>
-      <div>{{ e.eventTime | date: 'HH:mm' }}</div>
+      <!-- <div>{{ e.eventDate | date }}</div> -->
+      <div>{{ e.eventTime | date }}</div>
+      <div>{{ e.eventTime | date: 'shortTime' }}</div>
       <div>{{ e.eventLocation }}  </div>
       <div>{{e.eventVenue}}</div>
       <div style="font-weight: 800;   color: rgb(255, 0, 115);">{{e.price |currency}}</div>

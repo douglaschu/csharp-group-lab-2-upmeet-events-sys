@@ -6,8 +6,8 @@ const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_H
 const PROXY_CONFIG = [
   {
     context: [
-      "/api/Events",
-      "/api/Events/Favorites"
+      //add in url for controllers
+      "/api/Events"
    ],
     proxyTimeout: 10000,
     target: target,

@@ -39,11 +39,17 @@ export class EventService {
     this.eventFavorited = true;
     return this.http.post<Favorite>(`${this.baseUrl}api/Events/Favorites`, addFave); 
   }
-  
+  addUserToFave(addUser:Favorite): Observable<Favorite>{
+    return this.http.post<Favorite>(`${this.baseUrl}api/Events/Favorites`, addUser); 
+  }
+
   updateEvent(updateEvent:Event): Observable<Event>{
     return this.http.put<Event>(`${this.baseUrl}api/Events/${updateEvent.id}`, updateEvent);
   }
 
+  updateUserFave(updateUser:Favorite): Observable<Favorite>{
+    return this.http.put<Favorite>(`${this.baseUrl}api/Events/Favorites/${updateUser.userName}`, updateUser);
+  }
   deleteEvent(id: number): Observable<Event>{
     return this.http.delete<Event>(`${this.baseUrl}api/Events/${id}`);
   }
