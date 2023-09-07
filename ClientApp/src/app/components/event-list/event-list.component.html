@@ -1,11 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+<body>
+    
+
+
+
 <h1>All Events</h1>
 
-<div routerLink="/Events/{{e.id}}" id="container" *ngFor="let e of allEventList">
-    <!-- <li *ngFor="let p of allPeople; index as i" routerLink="/people/{{i}}">{{p.name}}</li> -->
+<div
+  routerLink="/Events/{{ e.id }}"
+  id="container"
+  *ngFor="let e of allEventList"
+>
+  <!-- <li *ngFor="let p of allPeople; index as i" routerLink="/people/{{i}}">{{p.name}}</li> -->
 
+  <!-- <app-event-detail *ngFor="let e of getEventsByNewest()" [individualEvent]="e"></app-event-detail> -->
+  <div class="card">
+    <input type="checkbox" id="heart-checkbox">
+    <label for="heart-checkbox" class="heart-label"></label>
+    <div class="image-container">
+            <img src="{{ e.eventImage }}" />
+        <i class="fas fa-heart"></i>
+    </div>
+    <div class="card_details">
+      <div class="name">{{ e.eventName }}</div>
+      <div>{{ e.eventDate | date }}</div>
+      <div>{{ e.eventTime | date: 'HH:mm' }}</div>
+      <div>{{ e.eventLocation }}  </div>
+      <div>{{e.eventVenue}}</div>
+      <div style="font-weight: 800;   color: rgb(255, 0, 115);">{{e.price |currency}}</div>
 
-    <!-- <app-event-detail *ngFor="let e of getEventsByNewest()" [individualEvent]="e"></app-event-detail> -->
-    <p> {{e.eventName}}</p>
-    <p> {{e.eventDate}}</p>
+      <!-- <button  *ngIf="!voted" (click)="upVotePost()" >Upvote!</button>
+            <button  *ngIf="voted"(click)="removeVote()">Remove vote</button> -->
+        <span class="tag">{{ e.eventCategory }}  </span>
+
+    </div>
+  </div>
 </div>
-
+</body>
+</html>

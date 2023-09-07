@@ -11,11 +11,11 @@ public partial class Event
 
     public DateTime? EventDate { get; set; }
 
-    public TimeSpan? EventTime { get; set; }
+    public DateTime? EventTime { get; set; }
 
     public string? EventLocation { get; set; }
 
-    public float? Price { get; set; }
+    public double? Price { get; set; }
 
     public string? EventDescription { get; set; }
 

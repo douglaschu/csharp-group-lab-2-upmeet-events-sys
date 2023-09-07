@@ -1,21 +1,149 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+.image-container {
+  position: relative;
+  display: inline-block;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.image-container i {
+  position: absolute;
+  bottom: 10px; /* heart placement */
+  right: 10px; /* heart placement */
+  font-size: 24px; 
+  color: rgb(155, 155, 155); /*heart color*/
+  z-index: 1; /* Ensures the heart icon is above the image */
+}
+.image-container i:hover {
+  color: rgb(255, 0, 115); /*heart color when clicked*/
+}
+.image-container i.selected {
+  color: rgb(255, 0, 115); /*heart color when clicked*/
+}
+.image-container img {
+  display: block;
+  max-width: 100%;
 }
 
-code {
-  color: #e01a76;
+/* Hide the default checkbox */
+#heart-checkbox {
+  display: none;
+}
+#heart-checkbox {
+  display: none;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+/* Style the heart icon label */
+.heart-label {
+  position: absolute;
+  bottom: 10px; /* Adjust the bottom position as needed */
+  right: 10px; /* Adjust the right position as needed */
+  font-size: 24px; /* Adjust the font size as needed */
+  color: grey; /* Default color when not clicked */
+  cursor: pointer;
 }
 
+/* Style the heart icon label when the checkbox is checked */
+#heart-checkbox:checked + .heart-label {
+  color: pink; /* Color when checked (selected) */
+}
+
+
+#container{
+  /* border-radius: 11px; */
+  /* border-color: #3b5998; */
+  /* color: rgb(0, 0, 0); */
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow-x: auto;
+  flex-wrap: wrap;  
+  margin: auto;
+  margin-bottom: 10px;
+  max-width: 300px;
+}
+@media screen and (min-width: 768px) {
+  #container {
+      justify-content: space-between; /* Adjust as needed */
+  }
+}
+
+/* Media query for screens wider than 1200px */
+@media screen and (min-width: 1200px) {
+  #container {
+      justify-content: space-around; /* Adjust as needed */
+  }
+}
+
+button {
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  margin-top: 20px;
+  margin: 8px 8px 8px 8px;
+  padding: 8px 8px 8px 8px;
+  padding: 10px, 10px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #3b5998;
+  /* Button is inline-block element by default, it need to have block display for margin: 0 auto; to work */
+  margin: 0 auto;
+  display: block;
+  /* Button is a clickable element, therefore it should have a pointer cursor */
+  cursor: pointer;
+}
+button:focus, button:hover {
+background-color: #ffffff;
+color: #ff4b2b;
+}
+
+  img {
+    width: 100%;
+    border-radius: 12px;
+    height: 214px;
+    object-fit: cover;
+  }
+  .card__details {
+      padding: 16px 8px 8px 8px;
+    }
+
+  .card {
+    background-color: #ffffff;
+    border: none;
+    /* border: 1px solid #000000; */
+    /* Box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75); */
+    transition: 0.3s;
+    max-width: 300px;
+    padding: 8px;
+    border-radius: 12px;
+    /* margin: 20px rightValue 50px leftValue; */
+    /* margin: 20px 50px; */
+    /* border: widthValue styleValue colorValue; */
+    /* padding: 20px rightValue 50px leftValue;
+    padding: 50px, 10px; */
+  }
+  .tag {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    padding: 4px 8px;
+    border: 1px solid #e5eaed;
+    margin-bottom: 20px;
+    margin: auto;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #788697;
+  }
+      .name {
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 16px;
+  }
+  
+  p {
+    font-size: 14px;
+    color: #7f8c9b;
+    line-height: 150%;
+}
+.icon:hover{
+    color: #ff4b2b;
+}

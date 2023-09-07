@@ -69,7 +69,7 @@ namespace group_events_project.Controllers
             _dbContext.SaveChanges();
             return e;
         }
-    
+
         //api/Events/3
         [HttpDelete("{id}")]
         public Event deleteEvent(int id)
@@ -82,7 +82,7 @@ namespace group_events_project.Controllers
 
         //api/Events/Favorites/2
         [HttpDelete("Favorite/{FavoriteId}")]
-        public Favorite removeFavorite (int id)
+        public Favorite removeFavorite(int id)
         {
             Favorite remove = _dbContext.Favorites.Find(id);
             _dbContext.Favorites.Remove(remove);

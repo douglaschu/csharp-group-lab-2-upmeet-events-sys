@@ -1,1 +1,20 @@
-<p>favorite-list works!</p>
+
+<h1>Favorites</h1>
+
+<div id="container" *ngFor="let f of allFavoritesList">
+    <p>{{f.userName}}</p>
+  <!-- <li *ngFor="let p of allPeople; index as i" routerLink="/people/{{i}}">{{p.name}}</li> -->
+
+  <!-- <app-event-detail *ngFor="let e of getEventsByNewest()" [individualEvent]="e"></app-event-detail> -->
+  <div class="card">
+    <!-- <img src="{{ f.eventImage }}" /> -->
+    <div class="card_details">
+      <div class="name">{{ f.userName }}</div>
+      <p>{{ f.eventId }}</p>
+      <div class="icon">
+        <i class="fa fa-trash"></i>
+      </div>
+
+    </div>
+  </div>
+</div>

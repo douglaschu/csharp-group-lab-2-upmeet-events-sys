@@ -21,18 +21,13 @@ public partial class EventsDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        //=> optionsBuilder.UseSqlServer("Server=localhost,1433; Initial Catalog=EventsDB; User ID=SA; Password=someThingComplicated1234; TrustServerCertificate=true;");
-        //Working on Mac ^^^
-
-        
         => optionsBuilder.UseSqlServer("Data Source=.\\sqlexpress;Initial Catalog=EventsDB;Integrated Security=SSPI;Encrypt=false;TrustServerCertificate=True;");
-    //Working on PC ^^^
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Event>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Event__3213E83F997F724D");
+            entity.HasKey(e => e.Id).HasName("PK__Event__3213E83FD132DE31");
 
             entity.ToTable("Event");
 
@@ -55,7 +50,9 @@ public partial class EventsDbContext : DbContext
             entity.Property(e => e.EventName)
                 .HasMaxLength(255)
                 .HasColumnName("eventName");
-            entity.Property(e => e.EventTime).HasColumnName("eventTime");
+            entity.Property(e => e.EventTime)
+                .HasColumnType("date")
+                .HasColumnName("eventTime");
             entity.Property(e => e.EventVenue)
                 .HasMaxLength(255)
                 .HasColumnName("eventVenue");
@@ -64,7 +61,7 @@ public partial class EventsDbContext : DbContext
 
         modelBuilder.Entity<Favorite>(entity =>
         {
-            entity.HasKey(e => e.FavoriteId).HasName("PK__Favorite__CE74FAD5C411B97F");
+            entity.HasKey(e => e.FavoriteId).HasName("PK__Favorite__CE74FAD51744A952");
 
             entity.ToTable("Favorite");
 
@@ -75,7 +72,7 @@ public partial class EventsDbContext : DbContext
 
             entity.HasOne(d => d.Event).WithMany(p => p.Favorites)
                 .HasForeignKey(d => d.EventId)
-                .HasConstraintName("FK__Favorite__eventI__5CD6CB2B");
+                .HasConstraintName("FK__Favorite__eventI__656C112C");
         });
 
         OnModelCreatingPartial(modelBuilder);

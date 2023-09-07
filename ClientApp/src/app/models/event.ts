@@ -4,7 +4,7 @@ export interface Event {
   id: number;
   eventName: string;
   eventDate: Date;
-  eventTime: Time;
+  eventTime: Date;
   eventLocation: string;
   price: number;
   eventDescription: string;
