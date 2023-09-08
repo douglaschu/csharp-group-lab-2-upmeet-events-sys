@@ -3,6 +3,11 @@
   <nav>
     <button class="movie-list"routerLink="/event-list" routerLinkActive="activeLink">Movie List</button>
    <button class="watch-list" routerLink="/watch-list" routerLinkActive="activeLink">My Watch List</button>
+
+   <li class="nav-item" [routerLinkActive]="['link-active']"><a class="nav-link text-dark" [routerLink]="['/favorite-list']"
+      >Favorites</a></li>
+          <app-user-form class="login" (userLoggedIn)="userLoggedIn($event)"></app-user-form>
+
   </nav>
   <router-outlet></router-outlet>
 

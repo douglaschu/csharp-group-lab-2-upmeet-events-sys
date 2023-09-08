@@ -66,8 +66,6 @@ export class EventListComponent {
         console.log(response);
         this.allFavoritesList.push(response);
   });
-
-}
 }
 // callGetEventsByCategory(Category: Event):void{
 //   this._eventService.getEventsByCategory(Category).subscribe((response: Event[]) => {
@@ -75,6 +73,28 @@ export class EventListComponent {
 //     this.allEventList = response;
 //   });
 // }
-// deleteEvent(){
+callDeleteEvent(event: Event) {
+  let theEvent: Event = {} as Event;
+  this.eventFavorited = false; 
+  // theEvent.userName = this.theEvent;
+  theEvent.id = event.id; 
+  this._eventService.deleteEvent(theEvent).subscribe((response: Event) => {
+      console.log(response);
+      this.allFavoritesList.push(response);
+});
+}
 
+eventDeleted:boolean = false;
+callDeleteEvent():void{
+  this._eventService.emit(this.individualPost)
+  this._eventService={} as Event;
+  this.postDeleted = true;
+}
+}
+// deleteEvent(id: number): Observable<Event>{
+//   return this.http.delete<Event>(`${this.baseUrl}api/Events/${id}`);
+// }
+
+// removeEventFromFave(removedFavorite:Favorite): Observable<Favorite>{
+//   return this.http.delete<Favorite>(`${this.baseUrl}api/Events/Favorite?UserName=${removedFavorite.userName}&EventId=${removedFavorite.eventId}`);
 // }
