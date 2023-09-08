@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { EventService } from 'src/app/services/event.service';
 import { Event } from 'src/app/models/event';
 import { Favorite } from 'src/app/models/favorite';
@@ -11,6 +11,8 @@ import { Favorite } from 'src/app/models/favorite';
 export class EventListComponent {
   public allEventList: Event[] = [];
   public allFavoritesList: Favorite[] = [];
+  @Output() faveAdded = new EventEmitter<Favorite>();
+
 
   constructor(private _eventService: EventService) {}
 
@@ -29,21 +31,43 @@ export class EventListComponent {
       this.allEventList.push(response);
     });
   }
+  userName: string = ""; 
+  userLoggedIn(user:string){
+  this.userName = user;
+}
+
   callAddUserToFave(addUser: Favorite){
     this._eventService.addUserToFave(addUser).subscribe((response: Favorite) => {
       console.log(response);
-      this.allFavoritesList.push(response)
-    })
+      this.allFavoritesList.push(response);
+    });
   }
   getEventsByNewest(): Event[] {
     return this.allEventList.reverse();
   }
-  callAddEventToFave(newFave: Favorite) {
+  eventFavorited: boolean = false;
+  callAddEventToFave(event: Event) {
+    let newFave: Favorite = {} as Favorite;
+    this.eventFavorited = true; 
+    newFave.userName = this.userName;
+    newFave.eventId = event.id; 
     this._eventService.addEventToFave(newFave).subscribe((response: Favorite) => {
         console.log(response);
         this.allFavoritesList.push(response);
       });
   }
+
+  callRemoveEventFromFave(event: Event) {
+    let newFave: Favorite = {} as Favorite;
+    this.eventFavorited = false; 
+    newFave.userName = this.userName;
+    newFave.eventId = event.id; 
+    this._eventService.removeEventFromFave(newFave).subscribe((response: Favorite) => {
+        console.log(response);
+        this.allFavoritesList.push(response);
+  });
+
+}
 }
 // callGetEventsByCategory(Category: Event):void{
 //   this._eventService.getEventsByCategory(Category).subscribe((response: Event[]) => {

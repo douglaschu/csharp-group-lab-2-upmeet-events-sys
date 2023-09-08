@@ -8,33 +8,38 @@
 
 </head>
 <body>
+  <header class="hero">
+</header>
     <app-add-event-form (eventCreated)="callAddNewEvent($event)"></app-add-event-form>
+    <app-user-form class="login" (userLoggedIn)="userLoggedIn($event)"></app-user-form>
 
-<h1>All Events</h1>
 
-<div
-  routerLink="/Events/{{ e.id }}"
-  id="container"
+<h2>Hey there {{userName}}</h2>
+<div  id="container"
   *ngFor="let e of allEventList"
 >
   <!-- <li *ngFor="let p of allPeople; index as i" routerLink="/people/{{i}}">{{p.name}}</li> -->
 
   <!-- <app-event-detail *ngFor="let e of getEventsByNewest()" [individualEvent]="e"></app-event-detail> -->
-  <div class="card">
-    <input type="checkbox" id="heart-checkbox">
-    <label for="heart-checkbox" class="heart-label"></label>
+  
+  <div class="container">
     <div class="image-container">
             <img src="{{ e.eventImage }}" />
-        <i class="fas fa-heart"></i>
+            <button id="like" (click)="callAddEventToFave(e)"><i class="fas fa-heart"></i></button>
+            <!-- if the userID matches any of the events in the table, make the heart pink -->
+            <!-- <button id="like" *ngIf="eventFavorited == true" (click)="callRemoveEventFromFave(e)"><i class="fas fa-heart"></i></button> -->
+
+            <!-- <i class="fas fa-heart"><button id="heart-checkbox" (click)="callAddEventToFave(e)"> </button></i> -->
     </div>
-    <div class="card_details">
+    <div class="card_details" routerLink="/Events/{{ e.id }}"
+    >
       <div class="name">{{ e.eventName }}</div>
       <!-- <div>{{ e.eventDate | date }}</div> -->
       <div>{{ e.eventTime | date }}</div>
       <div>{{ e.eventTime | date: 'shortTime' }}</div>
       <div>{{ e.eventLocation }}  </div>
       <div>{{e.eventVenue}}</div>
-      <div style="font-weight: 800;   color: rgb(255, 0, 115);">{{e.price |currency}}</div>
+      <div style="font-weight: 800; color: rgb(255, 0, 115);">{{e.price | currency}}</div>
 
       <!-- <button  *ngIf="!voted" (click)="upVotePost()" >Upvote!</button>
             <button  *ngIf="voted"(click)="removeVote()">Remove vote</button> -->

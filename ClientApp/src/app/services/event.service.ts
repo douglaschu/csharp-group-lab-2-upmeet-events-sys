@@ -19,7 +19,7 @@ export class EventService {
   }
 
   getAllFavorites(): Observable<Favorite[]>{
-    return this.http.get<Favorite[]>(`${this.baseUrl}api/Events/Favorites`);
+    return this.http.get<Favorite[]>(`${this.baseUrl}api/Events/Favorite`);
   }
 
   getEventById(id: number){
@@ -34,13 +34,16 @@ export class EventService {
     return this.http.post<Event>(`${this.baseUrl}api/Events`, newEvent); 
   }
 
-  eventFavorited: boolean = false;
   addEventToFave(addFave:Favorite): Observable<Favorite>{
-    this.eventFavorited = true;
-    return this.http.post<Favorite>(`${this.baseUrl}api/Events/Favorites`, addFave); 
+    return this.http.post<Favorite>(`${this.baseUrl}api/Events/Favorite`, addFave); 
   }
+  // removeEventFromFave(removedFavorite:Favorite): Observable<Favorite>{
+  //   this.eventFavorited = false;
+  //   return this.http.delete<Favorite>(`${this.baseUrl}api/Events/Favorite`, removedFavorite); 
+  // }
+
   addUserToFave(addUser:Favorite): Observable<Favorite>{
-    return this.http.post<Favorite>(`${this.baseUrl}api/Events/Favorites`, addUser); 
+    return this.http.post<Favorite>(`${this.baseUrl}api/Events/Favorite`, addUser); 
   }
 
   updateEvent(updateEvent:Event): Observable<Event>{
@@ -48,13 +51,13 @@ export class EventService {
   }
 
   updateUserFave(updateUser:Favorite): Observable<Favorite>{
-    return this.http.put<Favorite>(`${this.baseUrl}api/Events/Favorites/${updateUser.userName}`, updateUser);
+    return this.http.put<Favorite>(`${this.baseUrl}api/Events/Favorite/${updateUser.userName}`, updateUser);
   }
   deleteEvent(id: number): Observable<Event>{
     return this.http.delete<Event>(`${this.baseUrl}api/Events/${id}`);
   }
 
-  removeFavorite(favoriteId: number): Observable<Favorite>{
-    return this.http.delete<Favorite>(`${this.baseUrl}api/Events/Favorite/${favoriteId}`);
+  removeEventFromFave(removedFavorite:Favorite): Observable<Favorite>{
+    return this.http.delete<Favorite>(`${this.baseUrl}api/Events/Favorite?UserName=${removedFavorite.userName}&EventId=${removedFavorite.eventId}`);
   }
 }

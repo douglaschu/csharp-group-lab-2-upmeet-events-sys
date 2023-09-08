@@ -1,1 +1,36 @@
-<p>user-form works!</p>
+<!-- <body>
+    <button class="Create New Event" (click)="toggleDisplay()">Log In</button>
+    <button class="createNewEvent" (click)="toggleDisplay()">Log In</button>
+    <div  *ngIf="displayForm">
+
+    <form (ngSubmit)="userLogIn()" class='form'>
+        <div class="box">
+            <div class="fields">
+                <label for="userName">Name</label>
+                <input type="text" id="userName" name="UserName" [(ngModel)]="userName"/>
+            </div>
+        </div>
+        <button type="submit">Submit</button>
+
+    </form>
+    </div>
+</body> -->
+
+<body>
+    <button class="createNewEvent" (click)="toggleDisplay()">Log In</button>
+    <div class="popup-background" *ngIf="displayForm">
+        <div class="popup">
+            <form (ngSubmit)="userLogIn()" class='form'>
+                <div class="box">
+                    <div class="fields">
+                        <label for="userName">Name: </label>
+                        <input type="text" id="userName" name="UserName" [(ngModel)]="userName"/>
+                    </div>
+                </div>
+            <br>
+                <button type="submit" (click)="toggleDisplay()">Submit</button>
+            </form>
+            <!-- <button class="close-button" (click)="toggleDisplay()">Close</button> -->
+        </div>
+    </div>
+</body>

@@ -1,3 +1,4 @@
+import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Favorite } from 'src/app/models/favorite';
 
@@ -7,16 +8,17 @@ import { Favorite } from 'src/app/models/favorite';
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent {
-    newUser: Favorite = {} as Favorite;
-    @Output() eventCreated = new EventEmitter<Favorite>();
+    userName: string = "";
+    @Output() userLoggedIn = new EventEmitter<string>();
  
     constructor() {}
   
     ngOnInit(): void {}
   
     userLogIn() {
-      this.eventCreated.emit(this.newUser);
-      this.newUser = {} as Favorite; //resets the form
+      this.userLoggedIn.emit(this.userName);
+      console.log(this.userName)
+      this.userName = ""; //resets the form
     }
   
     displayForm: boolean = false;

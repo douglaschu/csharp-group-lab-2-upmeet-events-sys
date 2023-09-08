@@ -1,0 +1,78 @@
+body {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+    
+    width: auto;
+}
+
+#eventDescription {
+    height: 5em;
+}
+
+#price {
+    width: 25%
+}
+
+button {
+    border-radius: 10px;
+    border: none;
+    padding: 12px 24px;
+    margin: 20px 0px 10px 0px;
+    padding: 8px 8px 8px 8px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #3b5998;
+}
+
+button:hover {
+    background-color: #1095c1;
+}
+
+/* button.fade {
+    background-color: #3b5998;
+    color: #ffffff;
+    transition: background-color .8s;
+}
+​
+button.fade:hover {
+    background-color: #1095c1;
+}
+​
+button.fade:focus, button.fade:active {
+    background-color: #3b5998;
+    transition: none;
+}  */
+
+/* button:focus, button:hover {
+    background-color: #ffffff;
+    color: #ff4b2b;
+    } */
+
+button.createNewEvent {
+    width: 60%;
+}
+
+button.add {
+    margin-top: 10px;
+    width: 60%;
+}
+
+/* .hover:hover {
+    background: linear-gradient(90deg,#1095c1 50%,#3b5998 0) 
+    var(--_p,100%)/200% no-repeat;
+  -webkit-background-clip: background-color;
+          background-clip: background-color;
+  transition: .8s;
+    --_p: 0%;
+} */
