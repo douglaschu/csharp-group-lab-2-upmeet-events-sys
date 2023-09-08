@@ -23,14 +23,14 @@
             <form (ngSubmit)="userLogIn()" class='form'>
                 <div class="box">
                     <div class="fields">
-                        <label for="userName">Name: </label>
+                        <label for="userName">Name:</label>
                         <input type="text" id="userName" name="UserName" [(ngModel)]="userName"/>
                     </div>
                 </div>
             <br>
-                <button type="submit" (click)="toggleDisplay()">Submit</button>
+                <button type="submit">Submit</button>
             </form>
-            <!-- <button class="close-button" (click)="toggleDisplay()">Close</button> -->
+            <button class="close-button" (click)="toggleDisplay()">Close</button>
         </div>
     </div>
 </body>

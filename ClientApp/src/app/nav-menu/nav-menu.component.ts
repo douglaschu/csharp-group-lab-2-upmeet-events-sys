@@ -15,5 +15,11 @@ export class NavMenuComponent {
   toggle() {
     this.isExpanded = !this.isExpanded;
   }
+
+  userName: string = ""; 
+  userLoggedIn(user:string){
+  this.userName = user;
+}
+
 }
 

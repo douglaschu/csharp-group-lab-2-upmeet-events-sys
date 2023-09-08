@@ -36,9 +36,7 @@ export class AddEventFormComponent {
 
   submitEvent() {
     this.eventCreated.emit(this.newEvent);
-    this.newEvent = {} as Event;
-
-    //resets all form fields after submit
+    this.newEvent = {} as Event;//resets all form fields after submit
   }
 
   displayForm: boolean = false;

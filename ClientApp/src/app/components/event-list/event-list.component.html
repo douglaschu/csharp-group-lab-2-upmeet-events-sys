@@ -28,13 +28,11 @@
             <button id="like" (click)="callAddEventToFave(e)"><i class="fas fa-heart"></i></button>
             <!-- if the userID matches any of the events in the table, make the heart pink -->
             <!-- <button id="like" *ngIf="eventFavorited == true" (click)="callRemoveEventFromFave(e)"><i class="fas fa-heart"></i></button> -->
-
             <!-- <i class="fas fa-heart"><button id="heart-checkbox" (click)="callAddEventToFave(e)"> </button></i> -->
     </div>
     <div class="card_details" routerLink="/Events/{{ e.id }}"
     >
       <div class="name">{{ e.eventName }}</div>
-      <!-- <div>{{ e.eventDate | date }}</div> -->
       <div>{{ e.eventTime | date }}</div>
       <div>{{ e.eventTime | date: 'shortTime' }}</div>
       <div>{{ e.eventLocation }}  </div>
