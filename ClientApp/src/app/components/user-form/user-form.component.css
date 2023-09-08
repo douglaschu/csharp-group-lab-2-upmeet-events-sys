@@ -31,3 +31,13 @@
 .close-button:hover {
     background: #999;
 }
+.login-button {
+    border-radius: 10px;
+    border: none;
+    margin: 0px;
+    padding: 8px 8px 8px 8px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #3b5998;
+    
+}

@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { EventService } from 'src/app/services/event.service';
 import { Event } from 'src/app/models/event';
 import { Favorite } from 'src/app/models/favorite';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-event-list',
@@ -14,18 +15,23 @@ export class EventListComponent {
   @Output() faveAdded = new EventEmitter<Favorite>();
 
 
-  constructor(private _eventService: EventService) {}
+  constructor(private _eventService: EventService, private _userService: UserService) {}
 
   ngOnInit(): void {
+    this.userName = this._userService.user;
     this.callGetAllEvents();
   }
   callGetAllEvents() {
+    this.userName = this._userService.user;
+
     this._eventService.getAllEvents().subscribe((response: Event[]) => {
       console.log(response);
       this.allEventList = response;
     });
   }
   callAddNewEvent(newEvent: Event) {
+    this.userName = this._userService.user;
+
     this._eventService.addNewEvent(newEvent).subscribe((response: Event) => {
       console.log(response);
       this.allEventList.push(response);
@@ -33,20 +39,28 @@ export class EventListComponent {
   }
   userName: string = ""; 
   userLoggedIn(user:string){
+  this.userName = this._userService.user;
+
   this.userName = user;
 }
 
   callAddUserToFave(addUser: Favorite){
+    this.userName = this._userService.user;
+
     this._eventService.addUserToFave(addUser).subscribe((response: Favorite) => {
       console.log(response);
       this.allFavoritesList.push(response);
     });
   }
   getEventsByNewest(): Event[] {
+    this.userName = this._userService.user;
+
     return this.allEventList.reverse();
   }
   eventFavorited: boolean = false;
   callAddEventToFave(event: Event) {
+    this.userName = this._userService.user;
+
     let newFave: Favorite = {} as Favorite;
     this.eventFavorited = true; 
     newFave.userName = this.userName;
@@ -58,6 +72,8 @@ export class EventListComponent {
   }
 
   callRemoveEventFromFave(event: Event) {
+    this.userName = this._userService.user;
+
     let newFave: Favorite = {} as Favorite;
     this.eventFavorited = false; 
     newFave.userName = this.userName;
@@ -73,23 +89,22 @@ export class EventListComponent {
 //     this.allEventList = response;
 //   });
 // }
-callDeleteEvent(event: Event) {
-  let theEvent: Event = {} as Event;
-  this.eventFavorited = false; 
-  // theEvent.userName = this.theEvent;
-  theEvent.id = event.id; 
-  this._eventService.deleteEvent(theEvent).subscribe((response: Event) => {
+eventDeleted:boolean = false;
+callDeleteEvent(id: number) {
+  this.userName = this._userService.user;
+
+  this.eventDeleted = true;
+  this._eventService.deleteEvent(id).subscribe((response: Event) => {
       console.log(response);
-      this.allFavoritesList.push(response);
+      this.callGetAllEvents();
 });
 }
 
-eventDeleted:boolean = false;
-callDeleteEvent():void{
-  this._eventService.emit(this.individualPost)
-  this._eventService={} as Event;
-  this.postDeleted = true;
-}
+// callDeleteEvent():void{
+//   this._eventService.emit(this.individualPost)
+//   this._eventService={} as Event;
+//   this.postDeleted = true;
+// }
 }
 // deleteEvent(id: number): Observable<Event>{
 //   return this.http.delete<Event>(`${this.baseUrl}api/Events/${id}`);

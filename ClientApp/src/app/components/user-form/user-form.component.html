@@ -17,7 +17,7 @@
 </body> -->
 
 <body>
-    <button class="createNewEvent" (click)="toggleDisplay()">Log In</button>
+    <button class="login-button" (click)="toggleDisplay()">Log In</button>
     <div class="popup-background" *ngIf="displayForm">
         <div class="popup">
             <form (ngSubmit)="userLogIn()" class='form'>
@@ -30,7 +30,7 @@
             <br>
                 <button type="submit">Submit</button>
             </form>
-            <button class="close-button" (click)="toggleDisplay()">Close</button>
+            <!-- <button class="close-button" (click)="toggleDisplay()">Close</button> -->
         </div>
     </div>
 </body>

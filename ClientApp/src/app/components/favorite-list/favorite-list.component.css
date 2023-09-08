@@ -1,0 +1,35 @@
+/* Add this CSS to position the heart icon in the lower right corner */
+.image-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .image-container i#heart {
+    position: absolute;
+    bottom: 20px; /* Adjust the distance from the bottom */
+    right: 10px; /* Adjust the distance from the right */
+    font-size: 24px;
+    color: rgb(155, 155, 155); /* Heart color */
+    z-index: 1;
+  }
+  
+  /* Add this CSS to position the trash can icon in the lower left corner */
+  .image-container i#trash {
+    position: absolute;
+    bottom: 20px; /* Adjust the distance from the bottom */
+    left: 10px; /* Adjust the distance from the left */
+    font-size: 24px;
+    color: rgb(155, 155, 155); /* Trash can color */
+    z-index: 1;
+  }
+  
+  /* Add this CSS to change the color of the heart icon on hover */
+  .image-container i#heart:hover {
+    color: rgb(255, 0, 115); /* Heart color when clicked */
+  }
+  
+  /* Add this CSS to change the color of the trash can icon on hover */
+  .image-container i#trash:hover {
+    color: red; /* Trash can color when clicked */
+  }
+  

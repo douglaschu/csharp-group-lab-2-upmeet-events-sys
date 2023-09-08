@@ -1,20 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
+</head>
+<body>
+<!-- <p>What is your name:</p>
+<input type="text" [(ngModel)]="userName"> -->
+<button (click)="callGetAllFavorites()">Reload Favorites</button>
+
+<h2>Hey there {{userName}}</h2>
 <h1>Favorites</h1>
 
-<div id="container" *ngFor="let f of allFavoritesList">
-    <p>{{f.userName}}</p>
+<div  id="container"*ngFor="let e of eventsList">
   <!-- <li *ngFor="let p of allPeople; index as i" routerLink="/people/{{i}}">{{p.name}}</li> -->
-
   <!-- <app-event-detail *ngFor="let e of getEventsByNewest()" [individualEvent]="e"></app-event-detail> -->
-  <div class="card">
-    <!-- <img src="{{ f.eventImage }}" /> -->
-    <div class="card_details">
-      <div class="name">{{ f.userName }}</div>
-      <p>{{ f.eventId }}</p>
-      <div class="icon">
-        <i class="fa fa-trash"></i>
-      </div>
+  <div id="container">
+    <div class="card" >
+    <div class="image-container">
+            <img src="{{ e.eventImage }}" />
+            <button id="heart" (click)="callRemoveEventFromFave(e)"><i class="fas fa-heart"></i></button>
 
+            <!-- if the userID matches any of the events in the table, make the heart pink -->
+            <!-- <button id="like" *ngIf="eventFavorited == true" (click)="callRemoveEventFromFave(e)"><i class="fas fa-heart"></i></button> -->
+            <!-- <i class="fas fa-heart"><button id="heart-checkbox" (click)="callAddEventToFave(e)"> </button></i> -->
+    </div>
+    <div class="card_details" routerLink="/Events/{{ e.id }}">
+      <div class="name">{{ e.eventName }}</div>
+      <div>{{ e.eventTime | date }} @ {{ e.eventTime | date: 'shortTime' }}</div>
+      <div>{{ e.eventLocation }}  </div>
+      <div>{{e.eventVenue}}</div>
+      <div style="font-weight: 800; color: rgb(255, 0, 115);">{{e.price | currency}}
+        <span class="tag">{{ e.eventCategory }}  </span>
+        <br>
+          <!-- <button  *ngIf="!voted" (click)="upVotePost()" >Upvote!</button>
+          <button  *ngIf="voted"(click)="removeVote()">Remove vote</button> -->
+        </div>
     </div>
   </div>
 </div>
+
+</div>
+</body>
+</html>

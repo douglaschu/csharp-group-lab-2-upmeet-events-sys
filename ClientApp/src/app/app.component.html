@@ -1,4 +1,4 @@
-<body>
+<!-- <body>
   <app-nav-menu></app-nav-menu>
   <nav>
     <button class="movie-list"routerLink="/event-list" routerLinkActive="activeLink">Movie List</button>
@@ -12,4 +12,17 @@
   <router-outlet></router-outlet>
 
 </body>
+ -->
 
+ <body>
+  <nav>
+    <div class = "nav-bar">
+    <h1 class="page-title">Pawsitive Events</h1>
+    <app-user-form class="login" (userLoggedIn)="userLoggedIn($event)"></app-user-form>
+    <button class="nav-item event-list" [routerLink]="['/event-list']" [routerLinkActive]="['link-active']">Events</button>
+    <button class="nav-item favorite-list" [routerLink]="['/favorite-list']" [routerLinkActive]="['link-active']">Favorites</button>
+  </div>
+  </nav>
+  <router-outlet></router-outlet>
+
+</body>

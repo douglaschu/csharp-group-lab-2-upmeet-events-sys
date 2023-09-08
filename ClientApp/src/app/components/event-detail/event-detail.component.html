@@ -1,11 +1,12 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 <h1 class="pageTitle">Event Details</h1>
 <div class="card">
-    <label for="heart-checkbox" class="heart-label"></label>
-    <input type="checkbox" id="heart-checkbox" name="heart=checkbox">
     
     <div class="image-container">
-            <img src="{{ event.eventImage }}" />
-        <i class="fas fa-heart"></i>
+        <img src="{{ event.eventImage }}" />
+        <button id="heart" (click)="addToFavorites(event)"><i class="fas fa-heart"></i></button>
+        <!-- <i class="fas fa-heart"></i> -->
     </div>
     <div class="card_details">
       <div class="name">{{ event.eventName }}</div>
@@ -16,9 +17,11 @@
       <div>{{event.eventVenue}}</div>
       {{event.eventDescription}}
       <div style="font-weight: 800;   color: rgb(255, 0, 115);">{{event.price |currency}}</div>
-​
+
       <!-- <button  *ngIf="!voted" (click)="upVotePost()" >Upvote!</button>
             <button  *ngIf="voted"(click)="removeVote()">Remove vote</button> -->
         <span class="tag">{{ event.eventCategory }}  </span>
-​
+
     </div>
+
+    

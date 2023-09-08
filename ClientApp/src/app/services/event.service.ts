@@ -37,6 +37,9 @@ export class EventService {
   addEventToFave(addFave:Favorite): Observable<Favorite>{
     return this.http.post<Favorite>(`${this.baseUrl}api/Events/Favorite`, addFave); 
   }
+  getFavesByUser(userName:string): Observable<Event []>{
+    return this.http.get<Event[]>(`${this.baseUrl}api/Events/FavoritesByUser?userName=${userName}`);
+  }
   // removeEventFromFave(removedFavorite:Favorite): Observable<Favorite>{
   //   this.eventFavorited = false;
   //   return this.http.delete<Favorite>(`${this.baseUrl}api/Events/Favorite`, removedFavorite); 
