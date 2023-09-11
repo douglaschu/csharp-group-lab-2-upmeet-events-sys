@@ -25,6 +25,20 @@ namespace group_events_project.Controllers
         {
             return _dbContext.Favorites.Where(u => u.UserName == userName).ToList();
         }
+        //api/Events/FavoritesByUser
+        [HttpGet("FavoritesByUser")]
+        public List<Event> getFavoritesByUser(string userName)
+
+            {
+            List<Favorite> faves = getFavorites(userName);
+            List<Event> result = new List<Event>();
+            foreach (Favorite fav in faves)
+            {
+                Event e = _dbContext.Events.FirstOrDefault( e => e.Id == fav.EventId );
+                result.Add(e);
+            }
+            return result;
+            }
 
         //api/Events/1
         [HttpGet("{id}")]
@@ -50,7 +64,7 @@ namespace group_events_project.Controllers
             return newEvent;
         }
 
-        //api/Events/Favorites
+        //api/Events/Favorite
         [HttpPost("Favorite")]
         public Favorite addFavorite([FromBody] Favorite newFavorite)
         {
@@ -70,25 +84,52 @@ namespace group_events_project.Controllers
             return e;
         }
 
+        ////api/Events/Favorite/3
+        //[HttpPut("Favorite/{id}")]
+        //public Favorite updateFavorite(int FavoriteId, [FromBody] Favorite updatedFavorite)
+        //{
+        //    Favorite f = _dbContext.Favorites.Find(FavoriteId);
+        //    f = updatedFavorite;
+        //    _dbContext.Favorites.Update(f);
+        //    _dbContext.SaveChanges();
+        //    return f;
+        //}
+
+
         //api/Events/3
         [HttpDelete("{id}")]
         public Event deleteEvent(int id)
         {
+            List<Favorite> fave = _dbContext.Favorites.Where(f => f.EventId == id).ToList();
+            foreach (Favorite f in fave)
+            {
+                _dbContext.Favorites.Remove(f); 
+            }
+           
             Event deleted = _dbContext.Events.Find(id);
             _dbContext.Events.Remove(deleted);
             _dbContext.SaveChanges();
             return deleted;
         }
-
-        //api/Events/Favorites/2
-        [HttpDelete("Favorite/{FavoriteId}")]
-        public Favorite removeFavorite(int id)
+        //api/Events/Favorite
+        [HttpDelete("Favorite")]
+        public Favorite removeFavorite(string UserName, int EventId)
         {
-            Favorite remove = _dbContext.Favorites.Find(id);
+            Favorite remove = _dbContext.Favorites.FirstOrDefault(f => f.UserName == UserName && f.EventId == EventId);
             _dbContext.Favorites.Remove(remove);
             _dbContext.SaveChanges();
             return remove;
         }
+
+        //api/Events/Favorites/2
+        //[HttpDelete("Favorite/{FavoriteId}")]
+        //public Favorite removeFavorite(int id)
+        //{
+        //    Favorite remove = _dbContext.Favorites.Find(id);
+        //    _dbContext.Favorites.Remove(remove);
+        //    _dbContext.SaveChanges();
+        //    return remove;
+        //}
 
     }
 }

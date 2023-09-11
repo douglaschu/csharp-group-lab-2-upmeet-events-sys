@@ -35,9 +35,6 @@ public partial class EventsDbContext : DbContext
             entity.Property(e => e.EventCategory)
                 .HasMaxLength(255)
                 .HasColumnName("eventCategory");
-            entity.Property(e => e.EventDate)
-                .HasColumnType("date")
-                .HasColumnName("eventDate");
             entity.Property(e => e.EventDescription)
                 .HasMaxLength(4000)
                 .HasColumnName("eventDescription");
@@ -51,7 +48,7 @@ public partial class EventsDbContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("eventName");
             entity.Property(e => e.EventTime)
-                .HasColumnType("date")
+                .HasColumnType("datetime")
                 .HasColumnName("eventTime");
             entity.Property(e => e.EventVenue)
                 .HasMaxLength(255)

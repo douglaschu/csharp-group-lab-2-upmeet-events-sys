@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace group_events_project.Models;
 
@@ -8,10 +9,6 @@ public partial class Event
     public int Id { get; set; }
 
     public string? EventName { get; set; }
-
-    public DateTime? EventDate { get; set; }
-
-    public DateTime? EventTime { get; set; }
 
     public string? EventLocation { get; set; }
 
@@ -25,5 +22,8 @@ public partial class Event
 
     public string? EventVenue { get; set; }
 
+    public DateTime? EventTime { get; set; }
+    //remove infinate loop
+    [JsonIgnore]
     public virtual ICollection<Favorite> Favorites { get; set; } = new List<Favorite>();
 }
